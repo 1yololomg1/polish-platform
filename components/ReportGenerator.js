@@ -1,6 +1,5 @@
 'use client'
 import { useState } from 'react';
-import { FileText, Download, Mail, Share2, CheckCircle } from 'lucide-react';
 
 export default function ReportGenerator({ results, selectedFile }) {
   const [reportType, setReportType] = useState('summary');
@@ -11,7 +10,7 @@ export default function ReportGenerator({ results, selectedFile }) {
     return (
       <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
         <div className="text-center py-8">
-          <FileText className="w-12 h-12 text-gray-300 mx-auto mb-4" />
+          <span className="text-6xl mb-4 block">📄</span>
           <h3 className="text-lg font-semibold text-gray-500 mb-2">No Results Available</h3>
           <p className="text-gray-400">Process a file to generate reports</p>
         </div>
@@ -65,7 +64,7 @@ export default function ReportGenerator({ results, selectedFile }) {
     <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
       <div className="flex items-center justify-between mb-6">
         <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
-          <FileText className="w-6 h-6 text-blue-600" />
+          <span className="text-blue-600">📄</span>
           Professional Reports
         </h2>
         
@@ -154,9 +153,9 @@ export default function ReportGenerator({ results, selectedFile }) {
           <div>
             <div className="text-gray-500">Average SNR</div>
             <div className="font-semibold">
-              {Object.values(results.qualityMetrics)
+              {(Object.values(results.qualityMetrics)
                 .reduce((sum, metric) => sum + metric.snr, 0) / Object.keys(results.qualityMetrics).length
-              } dB
+              ).toFixed(1)} dB
             </div>
           </div>
           <div>
@@ -181,17 +180,17 @@ export default function ReportGenerator({ results, selectedFile }) {
         >
           {generated ? (
             <>
-              <CheckCircle className="w-5 h-5" />
+              <span className="text-lg">✅</span>
               <span>Report Generated Successfully!</span>
             </>
           ) : generating ? (
             <>
-              <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+              <span className="inline-block animate-spin text-lg">⏳</span>
               <span>Generating Report...</span>
             </>
           ) : (
             <>
-              <Download className="w-5 h-5" />
+              <span className="text-lg">📥</span>
               <span>Generate {selectedReportType?.name} - ${selectedReportType?.price}</span>
             </>
           )}
@@ -200,15 +199,15 @@ export default function ReportGenerator({ results, selectedFile }) {
         {generated && (
           <div className="flex space-x-2">
             <button className="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium py-2 px-4 rounded-lg transition-colors flex items-center justify-center space-x-2">
-              <Download className="w-4 h-4" />
+              <span>📥</span>
               <span>Download PDF</span>
             </button>
             <button className="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium py-2 px-4 rounded-lg transition-colors flex items-center justify-center space-x-2">
-              <Mail className="w-4 h-4" />
+              <span>📧</span>
               <span>Email Report</span>
             </button>
             <button className="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium py-2 px-4 rounded-lg transition-colors flex items-center justify-center space-x-2">
-              <Share2 className="w-4 h-4" />
+              <span>🔗</span>
               <span>Share</span>
             </button>
           </div>
