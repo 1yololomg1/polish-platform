@@ -4,7 +4,6 @@ import FileManager from '../components/FileManager';
 import AlgorithmPanel from '../components/AlgorithmPanel';
 import LogVisualization from '../components/LogVisualization';
 import ReportGenerator from '../components/ReportGenerator';
-import { Zap, Shield, Award, Users } from 'lucide-react';
 
 export default function Home() {
   const [uploadedFiles, setUploadedFiles] = useState([]);
@@ -104,15 +103,15 @@ export default function Home() {
             
             <div className="flex items-center space-x-6 text-sm text-gray-600">
               <div className="flex items-center space-x-1">
-                <Shield className="w-4 h-4 text-green-500" />
+                <span className="w-4 h-4 text-green-500">🛡️</span>
                 <span>Enterprise Security</span>
               </div>
               <div className="flex items-center space-x-1">
-                <Zap className="w-4 h-4 text-yellow-500" />
+                <span className="w-4 h-4 text-yellow-500">⚡</span>
                 <span>Real-time Processing</span>
               </div>
               <div className="flex items-center space-x-1">
-                <Award className="w-4 h-4 text-blue-500" />
+                <span className="w-4 h-4 text-blue-500">🏆</span>
                 <span>Industry Standard</span>
               </div>
             </div>
@@ -172,19 +171,19 @@ export default function Home() {
         <div className="mt-16 bg-white rounded-xl shadow-sm p-6 border border-gray-200">
           <div className="grid md:grid-cols-3 gap-8 text-center">
             <div className="flex flex-col items-center">
-              <Users className="w-8 h-8 text-blue-500 mb-2" />
+              <span className="text-3xl mb-2">👥</span>
               <h3 className="font-semibold text-gray-900 mb-1">Trusted by Professionals</h3>
               <p className="text-sm text-gray-600">Used by petroleum engineers worldwide</p>
             </div>
             
             <div className="flex flex-col items-center">
-              <Shield className="w-8 h-8 text-green-500 mb-2" />
+              <span className="text-3xl mb-2">🛡️</span>
               <h3 className="font-semibold text-gray-900 mb-1">Enterprise Security</h3>
               <p className="text-sm text-gray-600">Bank-level encryption and data protection</p>
             </div>
             
             <div className="flex flex-col items-center">
-              <Award className="w-8 h-8 text-yellow-500 mb-2" />
+              <span className="text-3xl mb-2">🏆</span>
               <h3 className="font-semibold text-gray-900 mb-1">Industry Standard</h3>
               <p className="text-sm text-gray-600">Real mathematical algorithms, not approximations</p>
             </div>

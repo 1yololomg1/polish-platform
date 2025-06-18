@@ -1,6 +1,5 @@
 'use client'
 import { useState } from 'react';
-import { Upload, FileText, Trash2, CheckCircle, AlertCircle, Clock } from 'lucide-react';
 
 export default function FileManager({ uploadedFiles, setUploadedFiles, onFileSelect }) {
   const [dragActive, setDragActive] = useState(false);
@@ -88,11 +87,20 @@ export default function FileManager({ uploadedFiles, setUploadedFiles, onFileSel
     return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
   };
 
+  const getStatusIcon = (status) => {
+    switch (status) {
+      case 'ready': return '✅';
+      case 'processing': return '⏳';
+      case 'error': return '❌';
+      default: return '📄';
+    }
+  };
+
   return (
     <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
       <div className="flex items-center justify-between mb-6">
         <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
-          <FileText className="w-6 h-6 text-blue-600" />
+          <span className="text-blue-600">📁</span>
           File Management
         </h2>
         <div className="text-sm text-gray-500">
@@ -122,7 +130,9 @@ export default function FileManager({ uploadedFiles, setUploadedFiles, onFileSel
         />
         
         <div className="flex flex-col items-center">
-          <Upload className={`w-12 h-12 mb-4 ${dragActive ? 'text-blue-500' : 'text-gray-400'}`} />
+          <span className={`text-6xl mb-4 ${dragActive ? 'animate-bounce' : ''}`}>
+            {uploading ? '⏳' : '📤'}
+          </span>
           <div className="text-lg font-semibold text-gray-700 mb-2">
             {uploading ? 'Uploading...' : 'Drop LAS files here or click to browse'}
           </div>
@@ -145,9 +155,7 @@ export default function FileManager({ uploadedFiles, setUploadedFiles, onFileSel
               >
                 <div className="flex items-center space-x-3">
                   <div className="flex-shrink-0">
-                    {file.status === 'ready' && <CheckCircle className="w-5 h-5 text-green-500" />}
-                    {file.status === 'processing' && <Clock className="w-5 h-5 text-yellow-500 animate-spin" />}
-                    {file.status === 'error' && <AlertCircle className="w-5 h-5 text-red-500" />}
+                    <span className="text-xl">{getStatusIcon(file.status)}</span>
                   </div>
                   
                   <div className="flex-1 min-w-0">
@@ -174,9 +182,9 @@ export default function FileManager({ uploadedFiles, setUploadedFiles, onFileSel
                       e.stopPropagation();
                       removeFile(file.id);
                     }}
-                    className="p-1 text-gray-400 hover:text-red-500 transition-colors"
+                    className="p-1 text-gray-400 hover:text-red-500 transition-colors text-lg"
                   >
-                    <Trash2 className="w-4 h-4" />
+                    🗑️
                   </button>
                 </div>
               </div>

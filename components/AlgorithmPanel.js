@@ -1,6 +1,5 @@
 'use client'
 import { useState } from 'react';
-import { Settings, Play, Zap, Filter, TrendingUp } from 'lucide-react';
 
 export default function AlgorithmPanel({ onProcess, processing, selectedFile }) {
   const [selectedAlgorithms, setSelectedAlgorithms] = useState(['savgolay', 'hampel']);
@@ -14,7 +13,7 @@ export default function AlgorithmPanel({ onProcess, processing, selectedFile }) 
     {
       id: 'savgolay',
       name: 'Savitzky-Golay Filter',
-      icon: <TrendingUp className="w-5 h-5" />,
+      icon: '📈',
       description: 'Polynomial smoothing that preserves geological features',
       color: 'blue',
       parameters: [
@@ -25,7 +24,7 @@ export default function AlgorithmPanel({ onProcess, processing, selectedFile }) 
     {
       id: 'hampel',
       name: 'Hampel Filter',
-      icon: <Filter className="w-5 h-5" />,
+      icon: '🔍',
       description: 'Robust outlier detection using median absolute deviation',
       color: 'green',
       parameters: [
@@ -36,7 +35,7 @@ export default function AlgorithmPanel({ onProcess, processing, selectedFile }) 
     {
       id: 'pchip',
       name: 'PCHIP Interpolation',
-      icon: <Zap className="w-5 h-5" />,
+      icon: '⚡',
       description: 'Shape-preserving gap filling for missing data',
       color: 'purple',
       parameters: [
@@ -81,7 +80,7 @@ export default function AlgorithmPanel({ onProcess, processing, selectedFile }) 
     <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
       <div className="flex items-center justify-between mb-6">
         <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
-          <Settings className="w-6 h-6 text-blue-600" />
+          <span className="text-blue-600">⚙️</span>
           Algorithm Configuration
         </h2>
         {selectedFile && (
@@ -123,9 +122,7 @@ export default function AlgorithmPanel({ onProcess, processing, selectedFile }) 
                   </button>
                   
                   <div className="flex items-center space-x-2">
-                    <div className={`text-${algorithm.color}-600`}>
-                      {algorithm.icon}
-                    </div>
+                    <span className="text-xl">{algorithm.icon}</span>
                     <h3 className="font-semibold text-lg text-gray-900">
                       {algorithm.name}
                     </h3>
@@ -173,7 +170,7 @@ export default function AlgorithmPanel({ onProcess, processing, selectedFile }) 
           disabled={!selectedFile || selectedAlgorithms.length === 0 || processing}
           className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 disabled:from-gray-400 disabled:to-gray-500 text-white font-semibold py-4 px-6 rounded-xl transition-all duration-200 flex items-center justify-center space-x-2 shadow-lg"
         >
-          <Play className="w-5 h-5" />
+          <span className="text-lg">▶️</span>
           <span>
             {processing ? 'Processing...' : 'Process Selected File'}
           </span>
